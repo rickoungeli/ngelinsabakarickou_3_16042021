@@ -1,0 +1,49 @@
+@import "css/responsive.scss"; //pour importer un fichier 
+@import"css/variables.scss";
+
+/* Faux sélecteurs */
+%shaddow {box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);}
+%btn {
+    text-decoration: none;
+    border-radius: $radius;
+    padding: 5px 12px;
+}
+* {margin: 0;}
+body{
+    
+    font-family: 'Roboto', sans-serif;
+    font-family: 'Shrikhand', cursive;  
+}
+
+.card {
+    @extend %shaddow;
+    padding: $padding;
+    border-radius: $radius;
+    &title {
+    
+    }
+    &image {
+
+    }
+    &icon {
+        
+    }
+}
+.btn {
+    @extend %btn;
+    color:white;
+    background: $primary;
+    &:hover {
+        background: darken($primary,10);
+    }
+    @media only screen and (max-width: 1200px){
+        padding: $padding;
+    }
+}
+.btn-danger {
+    @extend .btn;
+    background: $danger;
+    &:hover {
+        background :darken($danger,10);
+    }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "p3_ngelinsabaka_rickou",
+  "version": "1.0.0",
+  "description": "Creation du site Ohmyfood!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rickou Ngeli",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp-autoprefixer": "^7.0.1",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-sass": "^4.1.0"
+  },
+  "dependencies": {
+    "gulp": "^4.0.2"
+  }
+}
