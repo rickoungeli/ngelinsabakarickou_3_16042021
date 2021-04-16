@@ -1,0 +1,6 @@
+@mixin button-padding{
+    padding: $taille-px+2 $taille-px*2;
+}
+@mixin titre1-padding{
+padding: $taille-px+5 0 $taille-px 0;
+}

@@ -1,0 +1,105 @@
+@import "./responsive.scss"; /* pour importer un fichier */
+@import "./variables.scss";
+@import "./mixins.scss";
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+
+
+/* Faux sélecteurs */
+%shaddow {box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)}
+%btn {
+    text-decoration: none;
+    border-radius: $taille-px*2;
+    font-size: $taille-em;
+    margin-top: $taille-px+1;
+    @include button-padding;
+}
+* {
+    box-sizing: border-box;
+    letter-spacing: 0.015em;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+      
+}
+
+/* Header */
+header{text-align: center;}
+.titre1{
+    font-size: $taille-em*1.8;
+    font-family: 'Shrikhand', cursive;
+    letter-spacing: 0;
+    @include titre1-padding;
+}
+.localisation {
+    display: flex;
+    justify-content: center;
+    background: $couleur4;
+    box-shadow: 0 -5px rgba(0, 0, 0, 0.4);
+    font-size: $taille-em;
+    padding: $taille-px+2;
+    & .icone {
+        padding-right: $taille-px;
+    } 
+}
+
+/* Sections */
+.sections {
+    padding : $taille-px*2;
+    .titre2 {
+        font-size: $taille-em*1.5;
+        font-weight: bold;
+    }
+}
+.section1 {
+    background: rgb(245, 245, 245);
+    text-align: center;
+    padding: 40px 30px;
+    .paragraphe{
+        font-size: $taille-em;
+        padding-top: $taille-px;
+    }
+    .bouton {
+        @extend %btn;
+        background: $couleur1;
+    }
+}
+
+
+.section2{
+
+
+}
+.card {
+    @extend %shaddow;
+    padding: $taille-px;
+    border-radius: $taille-px;
+    &title {
+    
+    }
+    &image {
+
+    }
+    &icon {
+        
+    }
+}
+.btn {
+    @extend %btn;
+    color:white;
+    background: $couleur2;
+    &:hover {
+        background: darken($couleur3,10);
+    }
+    @media only screen and (max-width: 1200px){
+        padding: $taille-px;
+    }
+}
+.btn-danger {
+    @extend .btn;
+    background: $danger;
+    &:hover {
+        background :darken($danger,10);
+    }
+}
+img {width: 100%;}

@@ -1,0 +1,100 @@
+@charset "UTF-8";
+/* pour importer un fichier */
+@import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
+/* Faux sélecteurs */
+.card {
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.btn, .btn-danger, .section1 .bouton {
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 1em;
+  margin-top: 11px;
+  padding: 12px 20px;
+}
+
+* {
+  box-sizing: border-box;
+  letter-spacing: 0.015em;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Header */
+header {
+  text-align: center;
+}
+
+.titre1 {
+  font-size: 1.8em;
+  font-family: "Shrikhand", cursive;
+  letter-spacing: 0;
+  padding: 15px 0 10px 0;
+}
+
+.localisation {
+  display: flex;
+  justify-content: center;
+  background: #e6e6e6;
+  box-shadow: 0 -5px rgba(0, 0, 0, 0.4);
+  font-size: 1em;
+  padding: 12px;
+}
+.localisation .icone {
+  padding-right: 10px;
+}
+
+/* Sections */
+.sections {
+  padding: 20px;
+}
+.sections .titre2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.section1 {
+  background: whitesmoke;
+  text-align: center;
+  padding: 40px 30px;
+}
+.section1 .paragraphe {
+  font-size: 1em;
+  padding-top: 10px;
+}
+.section1 .bouton {
+  background: #9356DC;
+}
+
+.card {
+  padding: 10px;
+  border-radius: 10px;
+}
+.btn, .btn-danger {
+  color: white;
+  background: #FF79DA;
+}
+.btn:hover, .btn-danger:hover {
+  background: #71d7be;
+}
+@media only screen and (max-width: 1200px) {
+  .btn, .btn-danger {
+    padding: 10px;
+  }
+}
+
+.btn-danger {
+  background: #b34d4d;
+}
+.btn-danger:hover {
+  background: #903d3d;
+}
+
+img {
+  width: 100%;
+}
+
+/*# sourceMappingURL=style.css.map */
