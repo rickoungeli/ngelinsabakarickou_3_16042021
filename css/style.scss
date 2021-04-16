@@ -1,5 +1,14 @@
 @import "css/responsive.scss"; //pour importer un fichier 
 @import"css/variables.scss";
+$couleur1: #9356DC;
+$couleur2: #FF79DA;
+$couleur3: #99E2D0;
+$couleur4: rgb(175, 165, 165);
+$danger: rgb(179, 77, 77);
+$succes: rgb(154, 240, 154);
+$padding: 10px;
+$radius : 3px;
+
 
 /* Faux sélecteurs */
 %shaddow {box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);}
@@ -10,11 +19,24 @@
 }
 * {margin: 0;}
 body{
-    
     font-family: 'Roboto', sans-serif;
-    font-family: 'Shrikhand', cursive;  
+      
+}
+header{
+    font-family: 'Shrikhand', cursive;
+    text-align: center;
+    
 }
 
+
+
+.section_1{
+
+
+}
+.localisation {
+    background: $couleur4;
+}
 .card {
     @extend %shaddow;
     padding: $padding;
