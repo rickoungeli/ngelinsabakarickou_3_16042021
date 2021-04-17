@@ -8,34 +8,46 @@
 %shaddow {box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)}
 %btn {
     text-decoration: none;
-    border-radius: $taille-px*2;
+    border-radius: $taille-px*3;
     font-size: $taille-em;
+    font-family: inherit;
     margin-top: $taille-px+1;
+    @extend %shaddow;
     @include button-padding;
 }
 * {
     box-sizing: border-box;
     letter-spacing: 0.015em;
+    border: none;
 }
 
 body{
     font-family: 'Roboto', sans-serif;
-      
+    min-width: 300px;
 }
 
 /* Header */
-header{text-align: center;}
+header{ text-align: center;}
 .titre1{
     font-size: $taille-em*1.8;
     font-family: 'Shrikhand', cursive;
     letter-spacing: 0;
     @include titre1-padding;
 }
+.titre2 {
+    font-size: $taille-em*1.5;
+    font-weight: bold;
+}
+.titre3 {
+    font-size: $taille-em*1;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
 .localisation {
     display: flex;
     justify-content: center;
-    background: $couleur4;
-    box-shadow: 0 -5px rgba(0, 0, 0, 0.4);
+    background: darken($couleur4,5);
+    box-shadow: 0 5px 5px darken($couleur4,20) inset;
     font-size: $taille-em;
     padding: $taille-px+2;
     & .icone {
@@ -45,61 +57,138 @@ header{text-align: center;}
 
 /* Sections */
 .sections {
-    padding : $taille-px*2;
-    .titre2 {
-        font-size: $taille-em*1.5;
-        font-weight: bold;
-    }
+    padding: $taille-px*5 5%;
 }
 .section1 {
-    background: rgb(245, 245, 245);
+    background: $couleur4;
     text-align: center;
-    padding: 40px 30px;
     .paragraphe{
         font-size: $taille-em;
         padding-top: $taille-px;
     }
     .bouton {
         @extend %btn;
-        background: $couleur1;
+        background: $couleur2;
+        font-weight: 500;
+        color: white;
+        &:hover {
+            background: darken($couleur2,10);
+            cursor: pointer;
+        }
+        &:active {
+            position: relative;
+            border: none;
+            margin-top: $taille-px+1;
+            top: $taille-px+1;
+        }
+
     }
 }
-
 
 .section2{
-
-
-}
-.card {
-    @extend %shaddow;
-    padding: $taille-px;
-    border-radius: $taille-px;
-    &title {
-    
-    }
-    &image {
-
-    }
-    &icon {
+    .presentation {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        &__element {
+            background: $couleur4;
+            border-radius: $taille-px*2;
+            padding: $taille-px*2.5 $taille-px*1.5;
+            margin-top: 25px;
+            font-size: $taille-em*1.1;
+            width: 97%;
+            @extend %shaddow;
         
+        .numero {
+            font-size: $taille-em/1.6;
+            border-radius: 50%;
+            background: $couleur1;
+            color:white;
+            padding: 3px 8px;
+            position: relative;
+            left:-30px;
+        }
+        }
+        .paragraphe {
+            position: relative;
+            display: inline-block;
+            margin-left: 30px;
+            font-weight: 500;
+        }
+    }
+    
+}
+
+.section3 {
+    background: $couleur4;
+    .card {
+        @extend %shaddow;
+        display: block;
+        position: relative;
+        height: 270px;
+        margin-top: $taille-px*2;
+        border-radius: $taille-px*3;
+        overflow: hidden;
+        &__image {
+            position: absolute;
+            width: 100%;
+            max-height: $taille-px*30;
+            top: -75px;
+            left: 0;
+            @media screen  and (max-width: 800px) {
+                height: $taille-px*45;
+            }
+        }
+        &__commentaire {
+            position: absolute;
+            right: 10%;
+            top:5%;
+            padding: ($taille-px)-4 $taille-px;
+            background: $couleur3;
+            color: darken($couleur3,40);
+            font-weight: 500;
+            font-size: $taille-em*0.9;
+        }
+        &__corps {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background: white;
+            padding: $taille-px+6 $taille-px;
+        }
+    }
+
+    .card:nth-child(3){
+        background: red;
+        .card__image {
+            
+            max-height: $taille-px*45;
+            top: -160px;
+            
+            @media screen  and (max-width: 800px) {
+                height: $taille-px*55;
+            }
+        }
+        span{
+            color: $couleur1;
+            
+        }
+    }
+    .icone {
+        font-size: $taille-em*1.5;
+        position: absolute;
+        right: 5%;
+        top: 10px;
     }
 }
-.btn {
-    @extend %btn;
-    color:white;
-    background: $couleur2;
-    &:hover {
-        background: darken($couleur3,10);
-    }
-    @media only screen and (max-width: 1200px){
-        padding: $taille-px;
-    }
-}
+
+
+
 .btn-danger {
-    @extend .btn;
+    @extend %btn;
     background: $danger;
     &:hover {
         background :darken($danger,10);
     }
 }
-img {width: 100%;}

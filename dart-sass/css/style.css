@@ -2,25 +2,28 @@
 /* pour importer un fichier */
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 /* Faux sélecteurs */
-.card {
+.section3 .card, .section2 .presentation__element, .btn-danger, .section1 .bouton {
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
 }
 
-.btn, .btn-danger, .section1 .bouton {
+.btn-danger, .section1 .bouton {
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 30px;
   font-size: 1em;
+  font-family: inherit;
   margin-top: 11px;
-  padding: 12px 20px;
+  padding: 15px 30px;
 }
 
 * {
   box-sizing: border-box;
   letter-spacing: 0.015em;
+  border: none;
 }
 
 body {
   font-family: "Roboto", sans-serif;
+  min-width: 300px;
 }
 
 /* Header */
@@ -35,11 +38,22 @@ header {
   padding: 15px 0 10px 0;
 }
 
+.titre2 {
+  font-size: 1.5em;
+  font-weight: bold;
+}
+
+.titre3 {
+  font-size: 1em;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
 .localisation {
   display: flex;
   justify-content: center;
-  background: #e6e6e6;
-  box-shadow: 0 -5px rgba(0, 0, 0, 0.4);
+  background: #e8e8e8;
+  box-shadow: 0 5px 5px #c2c2c2 inset;
   font-size: 1em;
   padding: 12px;
 }
@@ -49,41 +63,123 @@ header {
 
 /* Sections */
 .sections {
-  padding: 20px;
-}
-.sections .titre2 {
-  font-size: 1.5em;
-  font-weight: bold;
+  padding: 50px 5%;
 }
 
 .section1 {
   background: whitesmoke;
   text-align: center;
-  padding: 40px 30px;
 }
 .section1 .paragraphe {
   font-size: 1em;
   padding-top: 10px;
 }
 .section1 .bouton {
-  background: #9356DC;
+  background: #FF79DA;
+  font-weight: 500;
+  color: white;
+}
+.section1 .bouton:hover {
+  background: #ff46cc;
+  cursor: pointer;
+}
+.section1 .bouton:active {
+  position: relative;
+  border: none;
+  margin-top: 11px;
+  top: 11px;
 }
 
-.card {
-  padding: 10px;
-  border-radius: 10px;
+.section2 .presentation {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
 }
-.btn, .btn-danger {
+.section2 .presentation__element {
+  background: whitesmoke;
+  border-radius: 20px;
+  padding: 25px 15px;
+  margin-top: 25px;
+  font-size: 1.1em;
+  width: 97%;
+}
+.section2 .presentation__element .numero {
+  font-size: 0.625em;
+  border-radius: 50%;
+  background: #9356DC;
   color: white;
-  background: #FF79DA;
+  padding: 3px 8px;
+  position: relative;
+  left: -30px;
 }
-.btn:hover, .btn-danger:hover {
-  background: #71d7be;
+.section2 .presentation .paragraphe {
+  position: relative;
+  display: inline-block;
+  margin-left: 30px;
+  font-weight: 500;
 }
-@media only screen and (max-width: 1200px) {
-  .btn, .btn-danger {
-    padding: 10px;
+
+.section3 {
+  background: whitesmoke;
+}
+.section3 .card {
+  display: block;
+  position: relative;
+  height: 270px;
+  margin-top: 20px;
+  border-radius: 30px;
+  overflow: hidden;
+}
+.section3 .card__image {
+  position: absolute;
+  width: 100%;
+  max-height: 300px;
+  top: -75px;
+  left: 0;
+}
+@media screen and (max-width: 800px) {
+  .section3 .card__image {
+    height: 450px;
   }
+}
+.section3 .card__commentaire {
+  position: absolute;
+  right: 10%;
+  top: 5%;
+  padding: 6px 10px;
+  background: #99E2D0;
+  color: #278870;
+  font-weight: 500;
+  font-size: 0.9em;
+}
+.section3 .card__corps {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  padding: 16px 10px;
+}
+.section3 .card:nth-child(3) {
+  background: red;
+}
+.section3 .card:nth-child(3) .card__image {
+  max-height: 450px;
+  top: -160px;
+}
+@media screen and (max-width: 800px) {
+  .section3 .card:nth-child(3) .card__image {
+    height: 550px;
+  }
+}
+.section3 .card:nth-child(3) span {
+  color: #9356DC;
+}
+.section3 .icone {
+  font-size: 1.5em;
+  position: absolute;
+  right: 5%;
+  top: 10px;
 }
 
 .btn-danger {
@@ -91,10 +187,6 @@ header {
 }
 .btn-danger:hover {
   background: #903d3d;
-}
-
-img {
-  width: 100%;
 }
 
 /*# sourceMappingURL=style.css.map */
