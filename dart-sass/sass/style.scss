@@ -5,17 +5,17 @@
 
 
 /* Faux sélecteurs */
-%shaddow {box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2)}
+%shaddow {box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)}
 %btn {
     text-decoration: none;
     border-radius: $taille-px*3;
     font-size: $taille-em;
     font-family: inherit;
-    margin-top: $taille-px+1;
-    @extend %shaddow;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    transition: all $transition--duree;
     @include button-padding;
 }
-* {
+*, *::before, *::after {
     box-sizing: border-box;
     letter-spacing: 0.015em;
     border: none;
@@ -35,8 +35,9 @@ header{ text-align: center;}
     @include titre1-padding;
 }
 .titre2 {
-    font-size: $taille-em*1.5;
-    font-weight: bold;
+    font-size: $taille-em*1.4;
+    font-weight: 600;
+    letter-spacing: 0.04em;
 }
 .titre3 {
     font-size: $taille-em*1;
@@ -47,9 +48,10 @@ header{ text-align: center;}
     display: flex;
     justify-content: center;
     background: darken($couleur4,5);
-    box-shadow: 0 5px 5px darken($couleur4,20) inset;
+    box-shadow: 0 2px 5px darken($couleur4,20) inset;
     font-size: $taille-em;
-    padding: $taille-px+2;
+    font-weight: 500;
+    padding: $taille-px*1.6;
     & .icone {
         padding-right: $taille-px;
     } 
@@ -57,59 +59,65 @@ header{ text-align: center;}
 
 /* Sections */
 .sections {
-    padding: $taille-px*5 5%;
+    padding: $taille-px*4 5%;
 }
 .section1 {
     background: $couleur4;
     text-align: center;
+    height: 285px;
     .paragraphe{
-        font-size: $taille-em;
+        font-size: $taille-em*1.07;
         padding-top: $taille-px;
+        color:rgba(0, 0, 0, 0.7);
     }
     .bouton {
         @extend %btn;
-        background: $couleur2;
-        font-weight: 500;
-        color: white;
-        &:hover {
-            background: darken($couleur2,10);
+        background: linear-gradient($couleur2, $couleur1);
+        font-weight: 450;
+        margin-top: $taille-px*4;
+        color: rgba(255, 255, 255, .8);
+        opacity: 1;
+        &:hover { 
+            transition: all 300ms;
+            opacity: 0.7;
             cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) ;
         }
-        &:active {
-            position: relative;
-            border: none;
-            margin-top: $taille-px+1;
-            top: $taille-px+1;
-        }
-
     }
 }
 
-.section2{
-    .presentation {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-end;
-        &__element {
-            background: $couleur4;
-            border-radius: $taille-px*2;
-            padding: $taille-px*2.5 $taille-px*1.5;
-            margin-top: 25px;
-            font-size: $taille-em*1.1;
-            width: 97%;
-            @extend %shaddow;
-        
+/* Section 2 */
+.presentation {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    &__element {
+        background: $couleur4;
+        border-radius: $taille-px*2;
+        padding: $taille-px*2.5 $taille-px*3.5;
+        margin-top: 25px;
+        font-size: $taille-em*1.1;
+        width: 97%;
+        @extend %shaddow;
+        position: relative;
         .numero {
             font-size: $taille-em/1.6;
             border-radius: 50%;
             background: $couleur1;
             color:white;
             padding: 3px 8px;
-            position: relative;
-            left:-30px;
+            position: absolute;
+            left:0;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
+        .icone {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
         }
+        
         .paragraphe {
             position: relative;
             display: inline-block;
@@ -117,7 +125,6 @@ header{ text-align: center;}
             font-weight: 500;
         }
     }
-    
 }
 
 .section3 {
@@ -130,12 +137,14 @@ header{ text-align: center;}
         margin-top: $taille-px*2;
         border-radius: $taille-px*3;
         overflow: hidden;
+        color:black;
         &__image {
             position: absolute;
             width: 100%;
-            max-height: $taille-px*30;
-            top: -75px;
+            top:0;
             left: 0;
+            transform: translate(0%,-35%) scaleY(.6);
+            color:black;
             @media screen  and (max-width: 800px) {
                 height: $taille-px*45;
             }
@@ -157,38 +166,71 @@ header{ text-align: center;}
             background: white;
             padding: $taille-px+6 $taille-px;
         }
-    }
-
-    .card:nth-child(3){
-        background: red;
-        .card__image {
-            
-            max-height: $taille-px*45;
-            top: -160px;
-            
-            @media screen  and (max-width: 800px) {
-                height: $taille-px*55;
-            }
-        }
-        span{
-            color: $couleur1;
-            
-        }
+        &:visited {color: black;}
     }
     .icone {
         font-size: $taille-em*1.5;
         position: absolute;
         right: 5%;
         top: 10px;
+        z-index:1;
+        &:hover {
+            &::after {opacity: 1;}
+        }
+        &::after {
+            content: '\f004';
+            position:absolute;
+            top: 0;
+            right : 0;
+            bottom: 0;
+            left: 0;
+            color:yellow ;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 250ms;
+            display: inline-block;
+        }
     }
+
 }
 
 
 
-.btn-danger {
-    @extend %btn;
-    background: $danger;
-    &:hover {
-        background :darken($danger,10);
+footer {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    h3 {
+        font-size: $taille-em*1.1;
+        font-family: 'Shrikhand', cursive;
+        color: white;
     }
+    .nav {
+        display: flex;
+        flex-direction: column;
+        &__actions, &__informations{
+            color:rgba(255, 255, 255, .8);
+            text-decoration: none;
+            margin-top: $taille-px;
+        }
+        &__actions{
+            color:rgba(255, 255, 255, .95);
+            font-weight:450;
+        }
+        &__actions:hover, &__informations:hover,
+        &__actions:visited, &__informations:visited{
+            color:lighter(#fff,80);
+        }
+    .utensils::before, .hands::before {
+        content: '';
+        display: inline-block;
+        width: 18px;
+        height: 16px;
+        color: white;
+        vertical-align: middle;
+        margin-right: $taille-px;
+    }
+    .utensils::before{background: url('../../images/utensils-solid.svg') center center / 18px 16px no-repeat;}
+    .hands::before {background: url('../../images/hands-helping-solid.svg') center center / 18px 16px no-repeat;}
+    }
+    
 }

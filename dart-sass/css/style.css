@@ -2,20 +2,21 @@
 /* pour importer un fichier */
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
 /* Faux sélecteurs */
-.section3 .card, .section2 .presentation__element, .btn-danger, .section1 .bouton {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+.section3 .card, .presentation__element {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-.btn-danger, .section1 .bouton {
+.section1 .bouton {
   text-decoration: none;
   border-radius: 30px;
   font-size: 1em;
   font-family: inherit;
-  margin-top: 11px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  transition: all 300ms;
   padding: 15px 30px;
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   letter-spacing: 0.015em;
   border: none;
@@ -39,8 +40,9 @@ header {
 }
 
 .titre2 {
-  font-size: 1.5em;
-  font-weight: bold;
+  font-size: 1.4em;
+  font-weight: 600;
+  letter-spacing: 0.04em;
 }
 
 .titre3 {
@@ -53,9 +55,10 @@ header {
   display: flex;
   justify-content: center;
   background: #e8e8e8;
-  box-shadow: 0 5px 5px #c2c2c2 inset;
+  box-shadow: 0 2px 5px #c2c2c2 inset;
   font-size: 1em;
-  padding: 12px;
+  font-weight: 500;
+  padding: 16px;
 }
 .localisation .icone {
   padding-right: 10px;
@@ -63,57 +66,66 @@ header {
 
 /* Sections */
 .sections {
-  padding: 50px 5%;
+  padding: 40px 5%;
 }
 
 .section1 {
   background: whitesmoke;
   text-align: center;
+  height: 285px;
 }
 .section1 .paragraphe {
-  font-size: 1em;
+  font-size: 1.07em;
   padding-top: 10px;
+  color: rgba(0, 0, 0, 0.7);
 }
 .section1 .bouton {
-  background: #FF79DA;
-  font-weight: 500;
-  color: white;
+  background: linear-gradient(#FF79DA, #9356DC);
+  font-weight: 450;
+  margin-top: 40px;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 1;
 }
 .section1 .bouton:hover {
-  background: #ff46cc;
+  transition: all 300ms;
+  opacity: 0.7;
   cursor: pointer;
-}
-.section1 .bouton:active {
-  position: relative;
-  border: none;
-  margin-top: 11px;
-  top: 11px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
 }
 
-.section2 .presentation {
+/* Section 2 */
+.presentation {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-end;
 }
-.section2 .presentation__element {
+.presentation__element {
   background: whitesmoke;
   border-radius: 20px;
-  padding: 25px 15px;
+  padding: 25px 35px;
   margin-top: 25px;
   font-size: 1.1em;
   width: 97%;
+  position: relative;
 }
-.section2 .presentation__element .numero {
+.presentation__element .numero {
   font-size: 0.625em;
   border-radius: 50%;
   background: #9356DC;
   color: white;
   padding: 3px 8px;
-  position: relative;
-  left: -30px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }
-.section2 .presentation .paragraphe {
+.presentation__element .icone {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.presentation__element .paragraphe {
   position: relative;
   display: inline-block;
   margin-left: 30px;
@@ -130,13 +142,15 @@ header {
   margin-top: 20px;
   border-radius: 30px;
   overflow: hidden;
+  color: black;
 }
 .section3 .card__image {
   position: absolute;
   width: 100%;
-  max-height: 300px;
-  top: -75px;
+  top: 0;
   left: 0;
+  transform: translate(0%, -35%) scaleY(0.6);
+  color: black;
 }
 @media screen and (max-width: 800px) {
   .section3 .card__image {
@@ -160,33 +174,72 @@ header {
   background: white;
   padding: 16px 10px;
 }
-.section3 .card:nth-child(3) {
-  background: red;
-}
-.section3 .card:nth-child(3) .card__image {
-  max-height: 450px;
-  top: -160px;
-}
-@media screen and (max-width: 800px) {
-  .section3 .card:nth-child(3) .card__image {
-    height: 550px;
-  }
-}
-.section3 .card:nth-child(3) span {
-  color: #9356DC;
+.section3 .card:visited {
+  color: black;
 }
 .section3 .icone {
   font-size: 1.5em;
   position: absolute;
   right: 5%;
   top: 10px;
+  z-index: 1;
+}
+.section3 .icone:hover::after {
+  opacity: 1;
+}
+.section3 .icone::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  color: yellow;
+  opacity: 0;
+  z-index: -1;
+  transition: opacity 250ms;
+  display: inline-block;
 }
 
-.btn-danger {
-  background: #b34d4d;
+footer {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
 }
-.btn-danger:hover {
-  background: #903d3d;
+footer h3 {
+  font-size: 1.1em;
+  font-family: "Shrikhand", cursive;
+  color: white;
+}
+footer .nav {
+  display: flex;
+  flex-direction: column;
+}
+footer .nav__actions, footer .nav__informations {
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  margin-top: 10px;
+}
+footer .nav__actions {
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 450;
+}
+footer .nav__actions:hover, footer .nav__informations:hover, footer .nav__actions:visited, footer .nav__informations:visited {
+  color: lighter(#fff, 80);
+}
+footer .nav .utensils::before, footer .nav .hands::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 16px;
+  color: white;
+  vertical-align: middle;
+  margin-right: 10px;
+}
+footer .nav .utensils::before {
+  background: url("../../images/utensils-solid.svg") center center/18px 16px no-repeat;
+}
+footer .nav .hands::before {
+  background: url("../../images/hands-helping-solid.svg") center center/18px 16px no-repeat;
 }
 
 /*# sourceMappingURL=style.css.map */
