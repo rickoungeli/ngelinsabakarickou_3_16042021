@@ -2,19 +2,10 @@
 @import "./variables.scss";
 @import "./mixins.scss";
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
-
-
+@import "./loader.scss";
 /* Faux sélecteurs */
 %shaddow {box-shadow: 0 0 5px rgba(0, 0, 0, 0.2)}
-%btn {
-    text-decoration: none;
-    border-radius: $taille-px*3;
-    font-size: $taille-em;
-    font-family: inherit;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    transition: all $transition--duree;
-    @include button-padding;
-}
+
 *, *::before, *::after {
     box-sizing: border-box;
     letter-spacing: 0.015em;
@@ -27,82 +18,123 @@ body{
 }
 
 /* Header */
-header{ text-align: center;}
+header{ 
+    height: $header--height;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    a {
+        position: absolute;
+        margin-left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        text-decoration: none;
+    }
+}
 .titre1{
-    font-size: $taille-em*1.8;
+    text-align: center;
+    font-size: $font--size*1.8;
     font-family: 'Shrikhand', cursive;
     letter-spacing: 0;
-    @include titre1-padding;
 }
 .titre2 {
-    font-size: $taille-em*1.4;
+    font-size: $font--size*1.4;
     font-weight: 600;
     letter-spacing: 0.04em;
 }
 .titre3 {
-    font-size: $taille-em*1;
+    font-size: $font--size*1;
     margin-bottom: 5px;
     font-weight: bold;
 }
+.titre4 {
+    text-transform: uppercase;
+    color: rgba(0, 0, 0, .6)
+
+}                                                                                                                                                                                                                                 
 .localisation {
     display: flex;
     justify-content: center;
     background: darken($couleur4,5);
     box-shadow: 0 2px 5px darken($couleur4,20) inset;
-    font-size: $taille-em;
+    font-size: $font--size;
     font-weight: 500;
-    padding: $taille-px*1.6;
-    & .icone {
-        padding-right: $taille-px;
+    padding: $taille-px*1.5;
+    & span {
+        margin-right: $taille-px+5;
     } 
 }
 
 /* Sections */
 .sections {
-    padding: $taille-px*4 5%;
+    padding: 30px 5%;
+    width: 100%;
 }
 .section1 {
     background: $couleur4;
     text-align: center;
     height: 285px;
-    .paragraphe{
-        font-size: $taille-em*1.07;
-        padding-top: $taille-px;
-        color:rgba(0, 0, 0, 0.7);
+}
+.section3 {background: $couleur4;}
+.section4 {
+    background: $couleur4;
+    border-radius: 40px 40px 0 0;
+    transform: translateY(-22px);
+    &__entete {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
-    .bouton {
-        @extend %btn;
-        background: linear-gradient($couleur2, $couleur1);
-        font-weight: 450;
-        margin-top: $taille-px*4;
-        color: rgba(255, 255, 255, .8);
-        opacity: 1;
-        &:hover { 
-            transition: all 300ms;
-            opacity: 0.7;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) ;
+    span {
+        font-size: $font--size*1.5;
+        
         }
+}
+
+
+.paragraphe{
+    font-size: $font--size*1.07;
+    color:rgba(0, 0, 0, 0.7);
+}
+.bouton {
+    text-decoration: none;
+    border-radius: $taille-px*3;
+    font-size: $font--size;
+    font-family: inherit;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    @include button-padding;
+    background: linear-gradient($couleur2, $couleur1);
+    font-weight: 450;
+    margin-top: $taille-px*3;
+    color: rgba(255, 255, 255, .8);
+    opacity: 1;
+    position: relative;
+    transition: all $transition--duree;
+    &:hover { 
+        transition: all 300ms;
+        opacity: 0.7;
+        cursor: pointer;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) ;
     }
 }
 
+
 /* Section 2 */
-.presentation {
+.fonctionnement {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-end;
     &__element {
         background: $couleur4;
         border-radius: $taille-px*2;
         padding: $taille-px*2.5 $taille-px*3.5;
         margin-top: 25px;
-        font-size: $taille-em*1.1;
+        font-size: $font--size*1.1;
         width: 97%;
         @extend %shaddow;
         position: relative;
         .numero {
-            font-size: $taille-em/1.6;
+            font-size: $font--size/1.6;
             border-radius: 50%;
             background: $couleur1;
             color:white;
@@ -115,6 +147,7 @@ header{ text-align: center;}
         .icone {
             position: absolute;
             top: 50%;
+            left: 7%;
             transform: translateY(-50%);
         }
         
@@ -126,73 +159,142 @@ header{ text-align: center;}
         }
     }
 }
-
-.section3 {
-    background: $couleur4;
-    .card {
-        @extend %shaddow;
-        display: block;
+/* Section 4 */
+.foodmenu {
+    width: 100%;
+    &__titre {
+        line-height: 25px;
+        display: inline-block;
         position: relative;
-        height: 270px;
-        margin-top: $taille-px*2;
-        border-radius: $taille-px*3;
-        overflow: hidden;
-        color:black;
-        &__image {
-            position: absolute;
-            width: 100%;
-            top:0;
-            left: 0;
-            transform: translate(0%,-35%) scaleY(.6);
-            color:black;
-            @media screen  and (max-width: 800px) {
-                height: $taille-px*45;
-            }
-        }
-        &__commentaire {
-            position: absolute;
-            right: 10%;
-            top:5%;
-            padding: ($taille-px)-4 $taille-px;
-            background: $couleur3;
-            color: darken($couleur3,40);
-            font-weight: 500;
-            font-size: $taille-em*0.9;
-        }
-        &__corps {
-            position: absolute;
-            bottom: 0;
-            width: 100%;
-            background: white;
-            padding: $taille-px+6 $taille-px;
-        }
-        &:visited {color: black;}
-    }
-    .icone {
-        font-size: $taille-em*1.5;
-        position: absolute;
-        right: 5%;
-        top: 10px;
-        z-index:1;
-        &:hover {
-            &::after {opacity: 1;}
-        }
         &::after {
-            content: '\f004';
-            position:absolute;
-            top: 0;
-            right : 0;
-            bottom: 0;
+            content: '';
+            position: absolute;
+            top: 7px; 
             left: 0;
-            color:yellow ;
-            opacity: 0;
-            z-index: -1;
-            transition: opacity 250ms;
-            display: inline-block;
+            height: 20px;
+            width: 40px;
+            border-bottom: 3px solid $couleur3;
         }
     }
+    &__corps {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+        background-color: #fff;
+        margin: 15px 0;
+        border-radius: 15px;
+        font-size: $font--size*0.9;
+        
+    }
+    &__description {
+        padding: 10px;
+        width: 100%;
+        p:first-child {
+            font-size: $font--size*1.25;
+            line-height: 25px;
+            font-weight: 550;
+        }
+        p:nth-child(2) {
+            line-height: 25px;
 
+        }
+    }
+    &__prix {
+        position: relative;
+        width: 20%;
+        padding: 10px;
+        font-weight: bold;
+        top:50%;
+        &:hover + .foodmenu__bouton {
+            display: block;
+        }
+        
+    }
+    &__bouton {
+        width: 20%;
+        background-color: $couleur3;
+        border-radius: 0 10px 10px 0;
+        padding: 10px;
+        display: none;
+        &:hover {
+            display: block;
+        }
+    }
+    
 }
+
+
+.card {
+    @extend %shaddow;
+    display: block;
+    position: relative;
+    height: 250px;
+    margin-top: $taille-px*2;
+    border-radius: $taille-px*3;
+    overflow: hidden;
+    color:black;
+    &__image {
+        position: absolute;
+        width: 100%;
+        top:0;
+        left: 0;
+        transform: translate(0, -21%) scaleY(1);
+        color:black;
+    }
+    &__commentaire {
+        position: absolute;
+        right: 10%;
+        top:5%;
+        padding: ($taille-px)-4 $taille-px;
+        background: $couleur3;
+        color: darken($couleur3,40);
+        font-weight: 500;
+        font-size: $font--size*0.9;
+    }
+    &__corps {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        background: white;
+        padding: $taille-px+6 $taille-px;
+    }
+    &:visited {color: black;}
+}
+.card:nth-child(3) {
+    .card__image {transform: translate(0, -35%) scaleY(1)}
+}
+.bandeau {
+    border-radius: 0;
+    margin-top: 0;
+    .card__image {transform: translate(0, -35) scaleY(1) };
+}
+.icone {
+    font-size: $font--size*1.5;
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    z-index:1;
+    &:hover {
+        &::after {opacity: 1;}
+    }
+    &::after {
+        content: '\f004';
+        position:absolute;
+        top: 0;
+        right : 0;
+        bottom: 0;
+        left: 0;
+        color:yellow ;
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 250ms;
+        display: inline-block;
+    }
+}
+
+
+
 
 
 
@@ -200,7 +302,7 @@ footer {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     h3 {
-        font-size: $taille-em*1.1;
+        font-size: $font--size*1.1;
         font-family: 'Shrikhand', cursive;
         color: white;
     }
