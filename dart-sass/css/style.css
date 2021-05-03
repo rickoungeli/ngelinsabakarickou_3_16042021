@@ -1,34 +1,33 @@
 @charset "UTF-8";
 /* pour importer un fichier */
 @import url("https://cdn.jsdelivr.net/gh/jgthms/minireset.css@master/minireset.min.css");
-/* Fonctions */
 .bloc-loader {
-  z-index: 0;
-  font-size: 40px;
-  color: #FFF;
-  text-align: center;
-  font-family: "Roboto", sans-serif;
-  height: 100px;
-  width: 100px;
-  line-height: 100px;
-  background-color: #9356DC;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  z-index: 1;
+  font-size: 15px;
+  color: black;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  background-color: whitesmoke;
+  animation-name: disparaitre;
+  animation-duration: 1s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
 }
 
 .loader {
   width: 50px;
   height: 50px;
   display: inline-block;
-  vertical-align: middle;
   position: relative;
+  top: 50vh;
+  transform: translateY(-50%);
 }
 
 .loader-quart {
   border-radius: 50px;
-  border: 6px solid rgba(255, 255, 255, 0.4);
+  border: 6px solid #FF79DA;
   position: relative;
 }
 .loader-quart::after {
@@ -39,12 +38,9 @@
   bottom: -6px;
   right: -6px;
   border: 6px solid transparent;
-  border-top-color: #FFF;
+  border-top-color: #9356DC;
   border-radius: 50px;
-  -moz-animation: spin 1s linear infinite;
-  -o-animation: spin 1s linear infinite;
-  -webkit-animation: spin 1s linear infinite;
-  animation: spin 1s linear 3;
+  animation: spin 1s linear infinite;
   animation-delay: 500ms;
   animation-fill-mode: forwards;
 }
@@ -71,9 +67,6 @@
         border-top-color: #FFF;
         border-bottom-color: #FFF;
         opacity: 0.6;
-        -moz-animation: spinreverse 2s linear infinite;
-        -o-animation: spinreverse 2s linear infinite;
-        -webkit-animation: spinreverse 2s linear infinite;
         animation: spinreverse 2s linear infinite;
     }
 }
@@ -94,12 +87,48 @@
     transform: rotate(-360deg);
   }
 }
-@keyframes pagedisplay {
-  0% {
-    transform: opacity(0%);
+@keyframes apparaitre {
+  from {
+    opacity: O;
   }
-  100% {
-    transform: opacity(100%);
+  to {
+    opacity: 1;
+  }
+}
+@keyframes disparaitre {
+  from {
+    transform: scaleY(1);
+    transform-origin: bottom;
+  }
+  to {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+}
+@keyframes glisser {
+  from {
+    transform: scalex(0);
+    transform-origin: right;
+  }
+  to {
+    transform: scaleX(1);
+    transform-origin: right;
+  }
+}
+@keyframes deplacer {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }
 /* Faux sélecteurs */
@@ -114,36 +143,35 @@
 }
 
 body {
+  background-color: rgba(250, 250, 250, 0.9);
   font-family: "Roboto", sans-serif;
   min-width: 300px;
 }
 
-/* Header */
-header {
-  height: 67px;
-  padding: 0;
-  margin: 0;
-  position: relative;
-}
-header a {
-  position: absolute;
-  margin-left: 5%;
-  top: 50%;
-  transform: translateY(-50%);
-  text-decoration: none;
-}
-
 .titre1 {
-  text-align: center;
+  display: inline;
   font-size: 1.8em;
   font-family: "Shrikhand", cursive;
   letter-spacing: 0;
+  line-height: 2em;
+  margin: 0 auto;
+}
+@media only screen and (min-width: 700px) {
+  .titre1 {
+    font-size: 2em;
+  }
 }
 
 .titre2 {
   font-size: 1.4em;
   font-weight: 600;
   letter-spacing: 0.04em;
+  line-height: 1.5em;
+}
+@media only screen and (min-width: 700px) {
+  .titre2 {
+    font-size: 1.6em;
+  }
 }
 
 .titre3 {
@@ -151,10 +179,49 @@ header a {
   margin-bottom: 5px;
   font-weight: bold;
 }
+@media only screen and (min-width: 700px) {
+  .titre3 {
+    font-size: 1.2em;
+  }
+}
 
 .titre4 {
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.6);
+}
+
+.container {
+  width: 100%;
+  background-color: #FFF;
+  animation-name: apparaitre;
+  animation-duration: 3s;
+  animation-delay: 3s;
+  animation-fill-mode: forwards;
+}
+.container header {
+  opacity: 0;
+  animation: apparaitre 0.5s forwards 3.2s;
+}
+@media only screen and (min-width: 768px) {
+  .container {
+    width: 768px;
+    margin: 0 auto;
+  }
+}
+
+/* Header */
+header {
+  position: relative;
+  text-align: center;
+}
+header a {
+  display: inline;
+  position: absolute;
+  margin-left: 5%;
+  text-decoration: none;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .localisation {
@@ -164,26 +231,56 @@ header a {
   box-shadow: 0 2px 5px #c2c2c2 inset;
   font-size: 1em;
   font-weight: 500;
-  padding: 15px;
+  padding: 15px 0;
+  opacity: 0;
+  animation: apparaitre 0.7s forwards 3.3s;
 }
 .localisation span {
   margin-right: 15px;
 }
+@media only screen and (min-width: 700px) {
+  .localisation {
+    font-size: 1.2em;
+  }
+}
 
 /* Sections */
 .sections {
-  padding: 30px 5%;
+  padding: 37px 5%;
   width: 100%;
 }
 
 .section1 {
+  position: relative;
   background: whitesmoke;
   text-align: center;
-  height: 285px;
+  opacity: 0;
+  animation: apparaitre 0.5s forwards 3.4s;
+}
+.section1 .paragraphe {
+  margin-top: 10px;
+}
+.section1 .sous-section {
+  margin-bottom: 20px;
+}
+
+.section2 {
+  opacity: 0;
+  animation: apparaitre 0.5s forwards 3.6s;
+}
+.section2 .icone {
+  color: rgba(0, 0, 0, 0.6);
+  font-size: 1.1em;
+}
+.section2 .paragraphe {
+  color: black;
+  font-size: 0.9em;
 }
 
 .section3 {
   background: whitesmoke;
+  opacity: 0;
+  animation: apparaitre 0.5s forwards 3.8s;
 }
 
 .section4 {
@@ -200,10 +297,21 @@ header a {
 .section4 span {
   font-size: 1.5em;
 }
+.section4 .centrer {
+  padding: 0;
+  margin: 0;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .paragraphe {
   font-size: 1.07em;
-  color: rgba(0, 0, 0, 0.7);
+  color: rgba(0, 0, 0, 0.8);
 }
 
 .bouton {
@@ -212,20 +320,18 @@ header a {
   font-size: 1em;
   font-family: inherit;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-  padding: 15px 50px;
+  padding: 15px 20px;
   background: linear-gradient(#FF79DA, #9356DC);
   font-weight: 450;
-  margin-top: 30px;
+  margin: 30px auto 0 auto;
   color: rgba(255, 255, 255, 0.8);
-  opacity: 1;
-  position: relative;
   transition: all 300ms;
 }
 .bouton:hover {
   transition: all 300ms;
   opacity: 0.7;
   cursor: pointer;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
 /* Section 2 */
@@ -262,7 +368,7 @@ header a {
 .fonctionnement__element .paragraphe {
   position: relative;
   display: inline-block;
-  margin-left: 30px;
+  margin-left: 7%;
   font-weight: 500;
 }
 
@@ -274,6 +380,7 @@ header a {
   line-height: 25px;
   display: inline-block;
   position: relative;
+  /* Soulignement court */
 }
 .foodmenu__titre::after {
   content: "";
@@ -285,7 +392,6 @@ header a {
   border-bottom: 3px solid #99E2D0;
 }
 .foodmenu__corps {
-  display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: flex-end;
@@ -293,10 +399,61 @@ header a {
   margin: 15px 0;
   border-radius: 15px;
   font-size: 0.9em;
+  opacity: 1;
+  display: flex;
+}
+.foodmenu__corps:first-child() {
+  animation-name: apparaitre;
+  animation-duration: 0.5s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+}
+.foodmenu__corps:nth-child(2) {
+  animation-name: apparaitre;
+  animation-duration: 0.5s;
+  animation-delay: 2s;
+}
+.foodmenu__corps:nth-child(3) {
+  animation-name: apparaitre;
+  animation-duration: 0.5s;
+  animation-delay: 4s;
+}
+.foodmenu__bouton {
+  position: relative;
+  width: 20%;
+  background-color: #99E2D0;
+  border-radius: 0 10px 10px 0;
+  padding: 10px;
+  display: none;
+}
+.foodmenu__bouton span {
+  position: absolute;
+  display: inline-block;
+  color: white;
+  transform: translate(-50%, -50%);
+  top: 50%;
+  left: 50%;
+}
+.foodmenu__bouton:hover {
+  display: block;
+  animation: deplacer 0.5s ease;
+  cursor: pointer;
+}
+.foodmenu__bouton:hover + span {
+  animation: rotation 1s;
 }
 .foodmenu__description {
   padding: 10px;
   width: 100%;
+  cursor: default;
+}
+.foodmenu__description p {
+  display: inline-block;
+  min-width: 60%;
+  max-width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  overflow-wrap: break-word;
 }
 .foodmenu__description p:first-child {
   font-size: 1.25em;
@@ -306,25 +463,36 @@ header a {
 .foodmenu__description p:nth-child(2) {
   line-height: 25px;
 }
+.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton {
+  display: block;
+  animation: deplacer 0.5s ease;
+}
+.foodmenu__description:hover + .foodmenu__prix {
+  animation: deplacer 0.5s ease;
+}
+.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton span {
+  animation: rotation 1s;
+}
+.foodmenu__description:hover {
+  cursor: pointer;
+}
 .foodmenu__prix {
   position: relative;
   width: 20%;
   padding: 10px;
   font-weight: bold;
-  top: 50%;
+  vertical-align: bottom;
+}
+.foodmenu__prix:hover {
+  animation: deplacer 0.5s ease;
+  cursor: pointer;
 }
 .foodmenu__prix:hover + .foodmenu__bouton {
   display: block;
+  animation: deplacer 0.5s ease;
 }
-.foodmenu__bouton {
-  width: 20%;
-  background-color: #99E2D0;
-  border-radius: 0 10px 10px 0;
-  padding: 10px;
-  display: none;
-}
-.foodmenu__bouton:hover {
-  display: block;
+.foodmenu__prix:hover + .foodmenu__bouton span {
+  animation: rotation 1s;
 }
 
 .card {
@@ -336,13 +504,24 @@ header a {
   overflow: hidden;
   color: black;
 }
+@media only screen and (min-width: 700px) {
+  .card {
+    height: 350px;
+  }
+}
 .card__image {
   position: absolute;
   width: 100%;
+  height: 175px;
   top: 0;
   left: 0;
-  transform: translate(0, -21%) scaleY(1);
+  transform: translate(0, 0) scaleY(1);
   color: black;
+}
+@media only screen and (min-width: 700px) {
+  .card__image {
+    height: 250px;
+  }
 }
 .card__commentaire {
   position: absolute;
@@ -350,8 +529,8 @@ header a {
   top: 5%;
   padding: 6px 10px;
   background: #99E2D0;
-  color: #278870;
-  font-weight: 500;
+  color: #217460;
+  font-weight: 600;
   font-size: 0.9em;
 }
 .card__corps {
@@ -361,12 +540,13 @@ header a {
   background: white;
   padding: 16px 10px;
 }
+@media only screen and (min-width: 700px) {
+  .card__corps {
+    height: 100px;
+  }
+}
 .card:visited {
   color: black;
-}
-
-.card:nth-child(3) .card__image {
-  transform: translate(0, -35%) scaleY(1);
 }
 
 .bandeau {
@@ -374,7 +554,12 @@ header a {
   margin-top: 0;
 }
 .bandeau .card__image {
-  transform: translate(0, -35) scaleY(1);
+  height: 250px;
+}
+@media only screen and (min-width: 700px) {
+  .bandeau .card__image {
+    height: 400px;
+  }
 }
 
 .icone {
@@ -382,23 +567,22 @@ header a {
   position: absolute;
   right: 5%;
   top: 10px;
-  z-index: 1;
 }
-.icone:hover::after {
-  opacity: 1;
-}
-.icone::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  color: yellow;
+.icone:hover {
   opacity: 0;
-  z-index: -1;
+}
+
+.icone1 {
+  font-size: 1.5em;
+  position: absolute;
+  right: 5%;
+  top: 10px;
+  opacity: 0;
   transition: opacity 250ms;
-  display: inline-block;
+  color: #9356DC;
+}
+.icone1:hover {
+  opacity: 1;
 }
 
 footer {

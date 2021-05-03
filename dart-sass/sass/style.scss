@@ -11,47 +11,75 @@
     letter-spacing: 0.015em;
     border: none;
 }
-
 body{
+    background-color: rgba(250, 250, 250, .9);
     font-family: 'Roboto', sans-serif;
     min-width: 300px;
 }
-
-/* Header */
-header{ 
-    height: $header--height;
-    padding: 0;
-    margin: 0;
-    position: relative;
-    a {
-        position: absolute;
-        margin-left: 5%;
-        top: 50%;
-        transform: translateY(-50%);
-        text-decoration: none;
-    }
-}
 .titre1{
-    text-align: center;
+    display: inline;
     font-size: $font--size*1.8;
     font-family: 'Shrikhand', cursive;
     letter-spacing: 0;
+    line-height: 2em;
+    margin: 0 auto;
+    @media only screen and (min-width: 700px){
+        font-size: $font--size*2;
+    }
 }
 .titre2 {
     font-size: $font--size*1.4;
     font-weight: 600;
     letter-spacing: 0.04em;
+    line-height: 1.5em;
+    @media only screen and (min-width: 700px){
+        font-size: $font--size*1.6;
+    }
 }
 .titre3 {
     font-size: $font--size*1;
     margin-bottom: 5px;
     font-weight: bold;
+    @media only screen and (min-width: 700px){
+        font-size: $font--size*1.2;
+    }
 }
 .titre4 {
     text-transform: uppercase;
     color: rgba(0, 0, 0, .6)
 
-}                                                                                                                                                                                                                                 
+} 
+.container {
+    width: 100%;
+    background-color: #FFF;
+    animation-name: apparaitre;
+    animation-duration: 3s;
+    animation-delay: 3s;
+    animation-fill-mode: forwards;
+    header {
+        opacity: 0;
+        animation: apparaitre 0.5s forwards 3.2s ;
+    }
+    @media only screen and (min-width: 768px){
+        width: 768px;
+        margin: 0 auto;
+        
+    }
+}
+/* Header */   
+header{ 
+    position: relative;
+    text-align: center;
+    a {
+        display: inline;
+        position: absolute;
+        margin-left: 5%;
+        text-decoration: none;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}                                                                                                                                                                                                                        
 .localisation {
     display: flex;
     justify-content: center;
@@ -59,23 +87,48 @@ header{
     box-shadow: 0 2px 5px darken($couleur4,20) inset;
     font-size: $font--size;
     font-weight: 500;
-    padding: $taille-px*1.5;
+    padding: $taille-px*1.5 0;
     & span {
         margin-right: $taille-px+5;
     } 
+    opacity: 0;
+    animation: apparaitre 0.7s forwards 3.3s;
+    @media only screen and (min-width: 700px){
+        font-size: $font--size*1.2;
+    }
 }
 
 /* Sections */
 .sections {
-    padding: 30px 5%;
+    padding: 37px 5%;
     width: 100%;
 }
 .section1 {
+    position: relative;
     background: $couleur4;
     text-align: center;
-    height: 285px;
+    .paragraphe {margin-top: 10px;}
+    .sous-section {margin-bottom: 20px;}
+    opacity: 0;
+    animation: apparaitre 0.5s forwards 3.4s;
 }
-.section3 {background: $couleur4;}
+.section2 {
+    .icone {
+        color:rgba(0, 0, 0, 0.6);
+        font-size: $font--size*1.1;
+    }
+    .paragraphe {
+        color: black;
+        font-size: $font--size*0.9;
+    }
+    opacity: 0;
+    animation: apparaitre 0.5s forwards 3.6s;
+}
+.section3 {
+    background: $couleur4;
+    opacity: 0;
+    animation: apparaitre 0.5s forwards 3.8s;
+}
 .section4 {
     background: $couleur4;
     border-radius: 40px 40px 0 0;
@@ -90,12 +143,23 @@ header{
         font-size: $font--size*1.5;
         
         }
+    .centrer {
+       
+    padding: 0;
+    margin: 0;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    }
 }
-
-
 .paragraphe{
     font-size: $font--size*1.07;
-    color:rgba(0, 0, 0, 0.7);
+    color:rgba(0, 0, 0, 0.8);
 }
 .bouton {
     text-decoration: none;
@@ -106,20 +170,16 @@ header{
     @include button-padding;
     background: linear-gradient($couleur2, $couleur1);
     font-weight: 450;
-    margin-top: $taille-px*3;
+    margin: $taille-px*3 auto 0 auto;
     color: rgba(255, 255, 255, .8);
-    opacity: 1;
-    position: relative;
     transition: all $transition--duree;
     &:hover { 
         transition: all 300ms;
         opacity: 0.7;
         cursor: pointer;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.8) ;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.8) ;
     }
 }
-
-
 /* Section 2 */
 .fonctionnement {
     display: flex;
@@ -150,11 +210,10 @@ header{
             left: 7%;
             transform: translateY(-50%);
         }
-        
         .paragraphe {
             position: relative;
             display: inline-block;
-            margin-left: 30px;
+            margin-left: 7%;
             font-weight: 500;
         }
     }
@@ -166,7 +225,8 @@ header{
         line-height: 25px;
         display: inline-block;
         position: relative;
-        &::after {
+        /* Soulignement court */
+        &::after { 
             content: '';
             position: absolute;
             top: 7px; 
@@ -177,7 +237,6 @@ header{
         }
     }
     &__corps {
-        display: flex;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: flex-end;
@@ -185,33 +244,38 @@ header{
         margin: 15px 0;
         border-radius: 15px;
         font-size: $font--size*0.9;
-        
-    }
-    &__description {
-        padding: 10px;
-        width: 100%;
-        p:first-child {
-            font-size: $font--size*1.25;
-            line-height: 25px;
-            font-weight: 550;
+        opacity: 1;
+        display: flex;
+        &:first-child(){
+            
+            animation-name: apparaitre;
+            animation-duration: 0.5s;
+            animation-delay: 1s;
+            animation-fill-mode: backwards;
         }
-        p:nth-child(2) {
-            line-height: 25px;
-
+        &:nth-child(2){
+            animation-name: apparaitre;
+            animation-duration: 0.5s;
+            animation-delay: 2s;
         }
-    }
-    &__prix {
-        position: relative;
-        width: 20%;
-        padding: 10px;
-        font-weight: bold;
-        top:50%;
-        &:hover + .foodmenu__bouton {
-            display: block;
+        &:nth-child(3){
+            animation-name: apparaitre;
+            animation-duration: 0.5s;
+            animation-delay: 4s;
         }
-        
+               
     }
     &__bouton {
+        span {
+            position: absolute;
+            display: inline-block;
+            color: white;
+            transform: translate(-50%, -50%);
+            top:50%;
+            left:50%;
+        }
+        position: relative;
+        
         width: 20%;
         background-color: $couleur3;
         border-radius: 0 10px 10px 0;
@@ -219,12 +283,62 @@ header{
         display: none;
         &:hover {
             display: block;
+            animation: deplacer 0.5s ease;
+            cursor: pointer;
+        }
+        &:hover + span {
+            animation: rotation 1s;
         }
     }
-    
+    &__description {
+        padding: 10px;
+        width: 100%;
+        cursor: default;
+        p {
+            display:inline-block;
+            min-width: 60%;
+            max-width: 80%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            overflow-wrap: break-word;
+        }
+        p:first-child {
+            font-size: $font--size*1.25;
+            line-height: 25px;
+            font-weight: 550;
+        }
+        p:nth-child(2) {line-height: 25px}
+        &:hover + .foodmenu__prix + .foodmenu__bouton {
+            display: block;
+            animation: deplacer 0.5s ease;
+        }
+        &:hover + .foodmenu__prix  {
+            animation: deplacer 0.5s ease;
+        }
+        &:hover + .foodmenu__prix + .foodmenu__bouton span {
+            animation: rotation 1s;
+        }
+        &:hover {cursor: pointer;}
+    }
+    &__prix {
+        position: relative;
+        width: 20%;
+        padding: 10px;
+        font-weight: bold;
+        vertical-align: bottom;
+        &:hover {
+            animation: deplacer 0.5s ease;
+            cursor: pointer;
+        }
+        &:hover + .foodmenu__bouton {
+            display: block;
+            animation: deplacer 0.5s ease;
+        }
+        &:hover + .foodmenu__bouton span {
+            animation: rotation 1s;
+        }
+    }
 }
-
-
 .card {
     @extend %shaddow;
     display: block;
@@ -234,13 +348,20 @@ header{
     border-radius: $taille-px*3;
     overflow: hidden;
     color:black;
+    @media only screen and (min-width: 700px){
+        height: 350px;
+    }
     &__image {
         position: absolute;
         width: 100%;
+        height: 175px;
         top:0;
         left: 0;
-        transform: translate(0, -21%) scaleY(1);
+        transform: translate(0, 0) scaleY(1);
         color:black;
+        @media only screen and (min-width: 700px){
+            height: 250px;
+        }
     }
     &__commentaire {
         position: absolute;
@@ -248,8 +369,8 @@ header{
         top:5%;
         padding: ($taille-px)-4 $taille-px;
         background: $couleur3;
-        color: darken($couleur3,40);
-        font-weight: 500;
+        color: darken($couleur3,45);
+        font-weight: 600;
         font-size: $font--size*0.9;
     }
     &__corps {
@@ -258,46 +379,39 @@ header{
         width: 100%;
         background: white;
         padding: $taille-px+6 $taille-px;
+        @media only screen and (min-width: 700px){
+            height: 100px;
+        }
     }
     &:visited {color: black;}
-}
-.card:nth-child(3) {
-    .card__image {transform: translate(0, -35%) scaleY(1)}
 }
 .bandeau {
     border-radius: 0;
     margin-top: 0;
-    .card__image {transform: translate(0, -35) scaleY(1) };
+    .card__image {
+        height: 250px;
+        @media only screen and (min-width: 700px){
+            height: 400px;
+        }
+    };
 }
 .icone {
     font-size: $font--size*1.5;
     position: absolute;
     right: 5%;
     top: 10px;
-    z-index:1;
-    &:hover {
-        &::after {opacity: 1;}
-    }
-    &::after {
-        content: '\f004';
-        position:absolute;
-        top: 0;
-        right : 0;
-        bottom: 0;
-        left: 0;
-        color:yellow ;
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 250ms;
-        display: inline-block;
-    }
+    &:hover {opacity: 0;}
 }
-
-
-
-
-
-
+.icone1 {
+    font-size: $font--size*1.5;
+    position: absolute;
+    right: 5%;
+    top: 10px;
+    opacity: 0;
+    transition: opacity 250ms;
+    color:$couleur1;
+    &:hover {opacity: 1;}
+}
 footer {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
