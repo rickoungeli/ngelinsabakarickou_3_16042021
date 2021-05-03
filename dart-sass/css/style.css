@@ -95,6 +95,16 @@
     opacity: 1;
   }
 }
+@keyframes apparaitre1 {
+  from {
+    display: none;
+    color: black;
+  }
+  to {
+    display: flex;
+    color: red;
+  }
+}
 @keyframes disparaitre {
   from {
     transform: scaleY(1);
@@ -126,9 +136,11 @@
 @keyframes rotation {
   from {
     transform: rotate(0deg);
+    transform-origin: center;
   }
   to {
     transform: rotate(360deg);
+    transform-origin: center;
   }
 }
 /* Faux sélecteurs */
@@ -399,24 +411,73 @@ header a {
   margin: 15px 0;
   border-radius: 15px;
   font-size: 0.9em;
-  opacity: 1;
   display: flex;
+  overflow: hidden;
 }
 .foodmenu__corps:first-child() {
-  animation-name: apparaitre;
-  animation-duration: 0.5s;
-  animation-delay: 1s;
-  animation-fill-mode: backwards;
+  animation: apparaitre1 0.5s 1s cubic-bezier(0.9, 0, 0.1, 1) backwards;
 }
 .foodmenu__corps:nth-child(2) {
-  animation-name: apparaitre;
-  animation-duration: 0.5s;
-  animation-delay: 2s;
+  animation: apparaitre1 0.5s 2s cubic-bezier(0.9, 0, 0.1, 1);
 }
 .foodmenu__corps:nth-child(3) {
-  animation-name: apparaitre;
-  animation-duration: 0.5s;
-  animation-delay: 4s;
+  animation: apparaitre1 0.5s 4s cubic-bezier(0.9, 0, 0.1, 1);
+}
+.foodmenu__description {
+  padding: 10px;
+  width: 80%;
+  transition: width 0.5s;
+}
+.foodmenu__description:hover + .foodmenu__prix {
+  /* animation: deplacer 0.5s; */
+  transition: transform 0.5s;
+  transform: translateX(0%);
+}
+.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton {
+  transition: transform 0.5s;
+  transform: translateX(0%);
+  display: block;
+  /* animation: deplacer 0.5s; */
+}
+.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton span {
+  animation: rotation 1s;
+}
+.foodmenu__description:hover {
+  width: 60%;
+  cursor: pointer;
+}
+.foodmenu__description p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 25px;
+}
+.foodmenu__description p:first-child {
+  font-size: 1.25em;
+  font-weight: 550;
+}
+.foodmenu__prix {
+  display: flex;
+  position: relative;
+  width: 20%;
+  padding-bottom: 20px;
+  padding-right: 5%;
+  font-weight: bold;
+  justify-content: flex-end;
+  align-items: flex-end;
+  transform: translateX(100%);
+  /*
+  &:hover {
+      animation: deplacer 0.5s ease;
+      cursor: pointer;
+  }
+  &:hover + .foodmenu__bouton {
+      display: block;
+      animation: deplacer 0.5s ease;
+  }
+  &:hover + .foodmenu__bouton span {animation: rotation 1s; }
+  &:hover + .foodmenu__description {width : 60%;}
+  */
 }
 .foodmenu__bouton {
   position: relative;
@@ -424,75 +485,24 @@ header a {
   background-color: #99E2D0;
   border-radius: 0 10px 10px 0;
   padding: 10px;
-  display: none;
+  display: block;
+  transform: translateX(100%);
+  /*
+  &:hover {
+      display: block;
+      cursor: pointer;
+      animation: deplacer 0.5s;
+  }
+  &:hover + span {animation: rotation 1s;}
+  */
 }
 .foodmenu__bouton span {
   position: absolute;
   display: inline-block;
   color: white;
-  transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
-}
-.foodmenu__bouton:hover {
-  display: block;
-  animation: deplacer 0.5s ease;
-  cursor: pointer;
-}
-.foodmenu__bouton:hover + span {
-  animation: rotation 1s;
-}
-.foodmenu__description {
-  padding: 10px;
-  width: 100%;
-  cursor: default;
-}
-.foodmenu__description p {
-  display: inline-block;
-  min-width: 60%;
-  max-width: 80%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  overflow-wrap: break-word;
-}
-.foodmenu__description p:first-child {
-  font-size: 1.25em;
-  line-height: 25px;
-  font-weight: 550;
-}
-.foodmenu__description p:nth-child(2) {
-  line-height: 25px;
-}
-.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton {
-  display: block;
-  animation: deplacer 0.5s ease;
-}
-.foodmenu__description:hover + .foodmenu__prix {
-  animation: deplacer 0.5s ease;
-}
-.foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton span {
-  animation: rotation 1s;
-}
-.foodmenu__description:hover {
-  cursor: pointer;
-}
-.foodmenu__prix {
-  position: relative;
-  width: 20%;
-  padding: 10px;
-  font-weight: bold;
-  vertical-align: bottom;
-}
-.foodmenu__prix:hover {
-  animation: deplacer 0.5s ease;
-  cursor: pointer;
-}
-.foodmenu__prix:hover + .foodmenu__bouton {
-  display: block;
-  animation: deplacer 0.5s ease;
-}
-.foodmenu__prix:hover + .foodmenu__bouton span {
-  animation: rotation 1s;
+  transform: translate(-50%, -50%);
 }
 
 .card {
@@ -608,7 +618,7 @@ footer .nav__actions {
   font-weight: 450;
 }
 footer .nav__actions:hover, footer .nav__informations:hover, footer .nav__actions:visited, footer .nav__informations:visited {
-  color: lighter(#fff, 80);
+  color: lighter(#FFF, 50);
 }
 footer .nav .utensils::before, footer .nav .hands::before {
   content: "";
