@@ -201,23 +201,23 @@ body {
   color: rgba(0, 0, 0, 0.6);
 }
 
-.container {
+.container, .container1 {
   width: 100%;
   background-color: #FFF;
-  animation-name: apparaitre;
-  animation-duration: 3s;
-  animation-delay: 3s;
-  animation-fill-mode: forwards;
+}
+@media only screen and (min-width: 768px) {
+  .container, .container1 {
+    width: 768px;
+    margin: 0 auto;
+  }
+}
+
+.container {
+  animation: apparaitre 3s 3s forwards;
 }
 .container header {
   opacity: 0;
   animation: apparaitre 0.5s forwards 3.2s;
-}
-@media only screen and (min-width: 768px) {
-  .container {
-    width: 768px;
-    margin: 0 auto;
-  }
 }
 
 /* Header */
