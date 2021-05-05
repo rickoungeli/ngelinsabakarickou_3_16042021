@@ -102,7 +102,6 @@
   }
   to {
     display: flex;
-    color: red;
   }
 }
 @keyframes disparaitre {
