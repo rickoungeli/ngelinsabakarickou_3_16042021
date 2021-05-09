@@ -252,26 +252,30 @@ header{
         font-size: $font--size*0.9;
         display: flex;
         overflow: hidden;
+        opacity: 0;
+        animation-name: apparaitre, monter;
+        animation-duration: 1.5s;
+        animation-fill-mode: forwards;
+        
     }
-    &__corps:first-child(){animation: apparaitre1 0.5s 1s cubic-bezier(.9,0,.1,1) backwards;}
-    &__corps:nth-child(2){animation: apparaitre1 0.5s 2s cubic-bezier(.9,0,.1,1);}
-    &__corps:nth-child(3){animation: apparaitre1 0.5s 4s cubic-bezier(.9,0,.1,1);}           
-    
+    &__corps:first-child(){
+        animation-duration: 0.5s;
+    }
+    &__corps:nth-child(2){
+        animation-duration: 1s;
+    }
+           
     &__description {
         padding: 10px;
         width: 80%;
         transition: width 0.5s;
         &:hover + .foodmenu__prix  {
-            /* animation: deplacer 0.5s; */
             transition: transform 0.5s;
             transform: translateX(0%);
         }
         &:hover + .foodmenu__prix + .foodmenu__bouton {
-            
             transition: transform 0.5s;
             transform: translateX(0%);
-            display: block;
-            /* animation: deplacer 0.5s; */
         }
         &:hover + .foodmenu__prix + .foodmenu__bouton span {
             animation: rotation 1s;
@@ -301,18 +305,7 @@ header{
         justify-content: flex-end;
         align-items:flex-end;
         transform: translateX(100%);
-        /*
-        &:hover {
-            animation: deplacer 0.5s ease;
-            cursor: pointer;
-        }
-        &:hover + .foodmenu__bouton {
-            display: block;
-            animation: deplacer 0.5s ease;
-        }
-        &:hover + .foodmenu__bouton span {animation: rotation 1s; }
-        &:hover + .foodmenu__description {width : 60%;}
-        */
+        p {text-align: right;}
     }
     &__bouton {
         position: relative;
@@ -320,16 +313,7 @@ header{
         background-color: $couleur3;
         border-radius: 0 10px 10px 0;
         padding: 10px;
-        display: block;
         transform:translateX(100%);
-        /*
-        &:hover {
-            display: block;
-            cursor: pointer;
-            animation: deplacer 0.5s;
-        }
-        &:hover + span {animation: rotation 1s;}
-        */
         span {
             position: absolute;
             display: inline-block;
@@ -416,6 +400,7 @@ header{
 footer {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
+    display: block;
     h3 {
         font-size: $font--size*1.1;
         font-family: 'Shrikhand', cursive;
@@ -424,6 +409,21 @@ footer {
     .nav {
         display: flex;
         flex-direction: column;
+        @media only screen and (min-width: 500px){
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        &__group {
+            display: flex;
+            flex-direction: column;
+            &--spaced {
+                margin-top: 10px;
+                @media only screen and (min-width: 500px){
+                    margin-top: 0px;
+                    margin-right: 30px;
+                }
+            }
+        }
         &__actions, &__informations{
             color:rgba(255, 255, 255, .8);
             text-decoration: none;

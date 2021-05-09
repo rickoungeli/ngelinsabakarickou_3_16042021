@@ -88,20 +88,22 @@
   }
 }
 @keyframes apparaitre {
-  from {
+  0% {
     opacity: O;
   }
-  to {
+  50% {
+    opacity: O, 5;
+  }
+  100% {
     opacity: 1;
   }
 }
-@keyframes apparaitre1 {
+@keyframes monter {
   from {
-    display: none;
-    color: black;
+    transform: translateY(10px);
   }
   to {
-    display: flex;
+    transform: translateY(0px);
   }
 }
 @keyframes disparaitre {
@@ -423,15 +425,16 @@ header a {
   font-size: 0.9em;
   display: flex;
   overflow: hidden;
+  opacity: 0;
+  animation-name: apparaitre, monter;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
 }
 .foodmenu__corps:first-child() {
-  animation: apparaitre1 0.5s 1s cubic-bezier(0.9, 0, 0.1, 1) backwards;
+  animation-duration: 0.5s;
 }
 .foodmenu__corps:nth-child(2) {
-  animation: apparaitre1 0.5s 2s cubic-bezier(0.9, 0, 0.1, 1);
-}
-.foodmenu__corps:nth-child(3) {
-  animation: apparaitre1 0.5s 4s cubic-bezier(0.9, 0, 0.1, 1);
+  animation-duration: 1s;
 }
 .foodmenu__description {
   padding: 10px;
@@ -439,15 +442,12 @@ header a {
   transition: width 0.5s;
 }
 .foodmenu__description:hover + .foodmenu__prix {
-  /* animation: deplacer 0.5s; */
   transition: transform 0.5s;
   transform: translateX(0%);
 }
 .foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton {
   transition: transform 0.5s;
   transform: translateX(0%);
-  display: block;
-  /* animation: deplacer 0.5s; */
 }
 .foodmenu__description:hover + .foodmenu__prix + .foodmenu__bouton span {
   animation: rotation 1s;
@@ -476,18 +476,9 @@ header a {
   justify-content: flex-end;
   align-items: flex-end;
   transform: translateX(100%);
-  /*
-  &:hover {
-      animation: deplacer 0.5s ease;
-      cursor: pointer;
-  }
-  &:hover + .foodmenu__bouton {
-      display: block;
-      animation: deplacer 0.5s ease;
-  }
-  &:hover + .foodmenu__bouton span {animation: rotation 1s; }
-  &:hover + .foodmenu__description {width : 60%;}
-  */
+}
+.foodmenu__prix p {
+  text-align: right;
 }
 .foodmenu__bouton {
   position: relative;
@@ -495,16 +486,7 @@ header a {
   background-color: #99E2D0;
   border-radius: 0 10px 10px 0;
   padding: 10px;
-  display: block;
   transform: translateX(100%);
-  /*
-  &:hover {
-      display: block;
-      cursor: pointer;
-      animation: deplacer 0.5s;
-  }
-  &:hover + span {animation: rotation 1s;}
-  */
 }
 .foodmenu__bouton span {
   position: absolute;
@@ -608,6 +590,7 @@ header a {
 footer {
   background: rgba(0, 0, 0, 0.8);
   padding: 20px;
+  display: block;
 }
 footer h3 {
   font-size: 1.1em;
@@ -617,6 +600,25 @@ footer h3 {
 footer .nav {
   display: flex;
   flex-direction: column;
+}
+@media only screen and (min-width: 500px) {
+  footer .nav {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+footer .nav__group {
+  display: flex;
+  flex-direction: column;
+}
+footer .nav__group--spaced {
+  margin-top: 10px;
+}
+@media only screen and (min-width: 500px) {
+  footer .nav__group--spaced {
+    margin-top: 0px;
+    margin-right: 30px;
+  }
 }
 footer .nav__actions, footer .nav__informations {
   color: rgba(255, 255, 255, 0.8);
