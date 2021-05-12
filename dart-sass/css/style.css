@@ -521,7 +521,12 @@ header a {
   overflow: hidden;
   color: black;
 }
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 400px) {
+  .card {
+    height: 220px;
+  }
+}
+@media only screen and (min-width: 600px) {
   .card {
     height: 350px;
   }
@@ -529,15 +534,20 @@ header a {
 .card__image {
   position: absolute;
   width: 100%;
-  height: 175px;
+  height: 200px;
   top: 0;
   left: 0;
   transform: translate(0, 0) scaleY(1);
   color: black;
 }
-@media only screen and (min-width: 700px) {
+@media only screen and (max-width: 400px) {
   .card__image {
-    height: 250px;
+    height: 150px;
+  }
+}
+@media only screen and (min-width: 600px) {
+  .card__image {
+    height: 300px;
   }
 }
 .card__commentaire {
@@ -557,9 +567,9 @@ header a {
   background: white;
   padding: 16px 10px;
 }
-@media only screen and (min-width: 700px) {
+@media only screen and (min-width: 600px) {
   .card__corps {
-    height: 100px;
+    height: 25%;
   }
 }
 .card:visited {
@@ -607,7 +617,7 @@ footer {
   padding: 20px;
   display: block;
 }
-footer h3 {
+footer h2 {
   font-size: 1.1em;
   font-family: "Shrikhand", cursive;
   color: white;
@@ -626,6 +636,10 @@ footer .nav__group {
   display: flex;
   flex-direction: column;
 }
+footer .nav__group__icone {
+  display: flex;
+  flex-direction: row;
+}
 footer .nav__group--spaced {
   margin-top: 10px;
 }
@@ -635,32 +649,26 @@ footer .nav__group--spaced {
     margin-right: 30px;
   }
 }
+footer .nav__group .icones {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+footer .nav__group .icones:first-child {
+  margin-right: 5px;
+  font-size: 0.7em;
+}
 footer .nav__actions, footer .nav__informations {
   color: rgba(255, 255, 255, 0.8);
   text-decoration: none;
   margin-top: 10px;
 }
 footer .nav__actions {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.8);
   font-weight: 450;
 }
 footer .nav__actions:hover, footer .nav__informations:hover, footer .nav__actions:visited, footer .nav__informations:visited {
   color: lighter(#FFF, 50);
-}
-footer .nav .utensils::before, footer .nav .hands::before {
-  content: "";
-  display: inline-block;
-  width: 18px;
-  height: 16px;
-  color: white;
-  vertical-align: middle;
-  margin-right: 10px;
-}
-footer .nav .utensils::before {
-  background: url("../../images/utensils-solid.svg") center center/18px 16px no-repeat;
-}
-footer .nav .hands::before {
-  background: url("../../images/hands-helping-solid.svg") center center/18px 16px no-repeat;
 }
 
 /*# sourceMappingURL=style.css.map */

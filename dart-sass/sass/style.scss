@@ -348,20 +348,29 @@ header{
     border-radius: $taille-px*3;
     overflow: hidden;
     color:black;
-    @media only screen and (min-width: 700px){
+    @media only screen and (max-width: 400px){
+        height: 220px;
+    }
+    @media only screen and (min-width: 600px){
         height: 350px;
     }
+    
     &__image {
         position: absolute;
         width: 100%;
-        height: 175px;
+        height: 200px;
         top:0;
         left: 0;
         transform: translate(0, 0) scaleY(1);
         color:black;
-        @media only screen and (min-width: 700px){
-            height: 250px;
+        
+        @media only screen and (max-width: 400px){
+            height: 150px;
         }
+        @media only screen and (min-width: 600px){
+            height: 300px;
+        }
+        
     }
     &__commentaire {
         position: absolute;
@@ -379,8 +388,8 @@ header{
         width: 100%;
         background: white;
         padding: $taille-px+6 $taille-px;
-        @media only screen and (min-width: 700px){
-            height: 100px;
+        @media only screen and (min-width: 600px){
+            height: 25%;
         }
     }
     &:visited {color: black;}
@@ -416,7 +425,7 @@ footer {
     background: rgba(0, 0, 0, 0.8);
     padding: 20px;
     display: block;
-    h3 {
+    h2 {
         font-size: $font--size*1.1;
         font-family: 'Shrikhand', cursive;
         color: white;
@@ -431,12 +440,26 @@ footer {
         &__group {
             display: flex;
             flex-direction: column;
+            &__icone {
+                display: flex;
+                flex-direction: row;
+            }
             &--spaced {
                 margin-top: 10px;
                 @media only screen and (min-width: 500px){
                     margin-top: 0px;
                     margin-right: 30px;
                 }
+            }
+            .icones {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+            .icones:first-child {
+                margin-right: 5px;
+                font-size: .7em;
+
             }
         }
         &__actions, &__informations{
@@ -445,24 +468,12 @@ footer {
             margin-top: $taille-px;
         }
         &__actions{
-            color:rgba(255, 255, 255, .95);
+            color:rgba(255, 255, 255, .8);
             font-weight:450;
         }
         &__actions:hover, &__informations:hover,
         &__actions:visited, &__informations:visited{
             color:lighter(#FFF,50);
         }
-    .utensils::before, .hands::before {
-        content: '';
-        display: inline-block;
-        width: 18px;
-        height: 16px;
-        color: white;
-        vertical-align: middle;
-        margin-right: $taille-px;
     }
-    .utensils::before{background: url('../../images/utensils-solid.svg') center center / 18px 16px no-repeat;}
-    .hands::before {background: url('../../images/hands-helping-solid.svg') center center / 18px 16px no-repeat;}
-    }
-    
 }
