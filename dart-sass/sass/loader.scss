@@ -113,11 +113,11 @@
 }
 @keyframes rotation {
     from {
-        transform:rotate(0deg) ;
-        transform-origin: center;
+        transform:rotate(0turn) ;
+        
     }
     to {
-        transform:rotate(360deg);
-        transform-origin: center;
+        transform:rotate(2turn);
+       
     }
 }
